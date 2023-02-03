@@ -1,0 +1,24 @@
+<header>
+<nav class="navbar navbar-expand-lg bg-light position-sticky top-0">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('views.home') }}">StockView</a>
+      <ul class="nav justify-content-end">
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('views.account') }}">Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth_bp.logout') }}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{{ url_for('auth_bp.login') }}">Login</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('auth_bp.signup') }}">Sign up</a>
+        </li>
+        {% endif %}
+      </ul>
+  </div>
+</nav>
+</header>

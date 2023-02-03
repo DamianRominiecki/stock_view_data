@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary" role="alert">
+                {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="col-8 offset-2 my-5">
+    <div class="card">
+        <div class="card-body">
+            <p class="lead text-center">STOCKS</p>
+              <div class="mb-3">
+                <div class="list-group">
+                  {% for stock in context.stocks %}
+                  <a href="{{ url_for('views.tables', symbol=stock.stock_name, page='1') }}" class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{ stock.stock_name }} </h5>
+                        {% for symbol, date in context.last_enter.items() %}
+                        {% if symbol ==  stock.stock_name %}
+                            <small> Last entry: {{ date }}</small>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <p class="mb-1">{{ stock.long_name }}</p>
+                    <small>{{ stock.website }}</small>
+                  </a>
+                  {% endfor %}
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
