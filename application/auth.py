@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, render_template, flash, request, session,
 from flask_login import login_required, logout_user, current_user, login_user
 from .forms import LoginForm, SignupForm, RequestResetForm, ResetPasswordForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from . import db, app, mail
+from . import db, mail
 from .models import User
 from flask_mail import Message
 
